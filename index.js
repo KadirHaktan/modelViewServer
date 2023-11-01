@@ -13,7 +13,12 @@ const viewPath="C:/home/site/wwwroot/wwwroot"
 
 app.use(express.static(`${viewPath}`))
 
-app.get("/",(req,res,next)=>{
+
+app.get('/',(req,res,next)=>{
+    res.send("hello")
+})
+
+app.get("/show",(req,res,next)=>{
     const directory=`${viewPath}/index.html`
     fs.createReadStream(directory).pipe(res);
 })
