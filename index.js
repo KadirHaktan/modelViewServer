@@ -9,7 +9,7 @@ const fs=require('fs')
 // const viewPath="C:/Users/HaktanDevice/OneDrive - HRSP/Desktop/3D Catalog Web Application/P23001/server/Presentation/wwwroot"
 
 
-const viewPath="."
+const viewPath="C:/home/site/wwwroot/wwwroot"
 
 app.use(express.static(`${viewPath}`))
 
