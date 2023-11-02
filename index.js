@@ -1,29 +1,24 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
-const port = 3010;
 
+// Body-parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-const fs=require('fs')
-const path=require('path')
+// POST route
+app.post('/show-html', (req, res) => {
+    const htmlContent = req.body.htmlContent;
+    
+    if (!htmlContent) {
+        return res.status(400).send('HTML content is required.');
+    }
+    
+    res.send(htmlContent);
+});
 
-// const viewPath="C:/Users/HaktanDevice/OneDrive - HRSP/Desktop/3D Catalog Web Application/P23001/server/Presentation/wwwroot"
-
-const homeDir = require('os').homedir();
-const desktopDir = path.join(homeDir,'Desktop')
-
-app.use(express.static(`${desktopDir}`))
-
-
-app.get('/',(req,res,next)=>{
-    res.send("hello")
-})
-
-app.get("/show",(req,res,next)=>{
-    const directory=`${desktopDir}/index.html`
-    fs.createReadStream(directory).pipe(res);
-})
-
-app.listen(port, () => {
-  console.log(`Sunucu ${port} portunda çalışıyor.`);
+// Sunucuyu 3000 portunda başlat
+app.listen(3010, () => {
+    console.log('express start');
 });
