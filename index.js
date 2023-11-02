@@ -24,7 +24,7 @@ app.post('/show-html', (req, res) => {
         return res.status(400).send('HTML content is required.');
     }
     
-    res.status(200).pipe(htmlContent);
+    res.status(200).send(htmlContent)
 });
 
 // Sunucuyu 3000 portunda başlat
