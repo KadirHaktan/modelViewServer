@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
 
+
+const stream=require('stream')
+
 // Body-parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -23,8 +26,17 @@ app.post('/show-html', (req, res) => {
     if (!htmlContent) {
         return res.status(400).send('HTML content is required.');
     }
+
+
+    const Readable=stream.Readable
+    const htmlReadable=new Readable()
+
+    htmlReadable.push(htmlContent)
+
+
+    htmlReadable.pipe(res)
     
-    res.status(200).send(htmlContent)
+    //res.status(200).send(htmlContent)
 });
 
 // Sunucuyu 3000 portunda başlat
