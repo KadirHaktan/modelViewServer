@@ -27,16 +27,9 @@ app.post('/show-html', (req, res) => {
         return res.status(400).send('HTML content is required.');
     }
 
-
-    const Readable=stream.Readable
-    const htmlReadable=new Readable()
-
-    htmlReadable.push(htmlContent)
-
-
-    htmlReadable.pipe(res)
-    
-    //res.status(200).send(htmlContent)
+    res.writeHead(200,{"Content-Type":"text/html"})
+    res.write(htmlContent)
+    res.end()
 });
 
 // Sunucuyu 3000 portunda başlat
