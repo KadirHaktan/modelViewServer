@@ -14,6 +14,7 @@ app.get("/:filePath",(req,res,next)=>{
     viewPath+=req.params.filePath
     const directory=`${viewPath}`
     app.use(express.static(directory))
+    console.log(directory)
     fs.createReadStream(directory).pipe(res);
 })
 
