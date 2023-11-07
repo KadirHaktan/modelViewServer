@@ -6,12 +6,13 @@ const port = 3010;
 
 const fs=require('fs')
 
-const viewPath="C://home//site//wwwroot//wwwroot//view"
+let viewPath=""
 
 app.use(express.static(`${viewPath}`))
 
-app.get("/",(req,res,next)=>{
-    const directory=`${viewPath}/index.html`
+app.get("/:filePath",(req,res,next)=>{
+    viewPath+=req.params.filePath
+    const directory=`${viewPath}`
     fs.createReadStream(directory).pipe(res);
 })
 
