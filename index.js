@@ -15,7 +15,6 @@ app.get("/:filePath",(req,res,next)=>{
     const directory=`${viewPath}`
     fs.createReadStream(directory).pipe(res);
 })
-
 app.listen(port, () => {
   console.log(`Sunucu ${port} portunda çalışıyor.`);
 });
