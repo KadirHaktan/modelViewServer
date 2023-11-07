@@ -8,11 +8,12 @@ const fs=require('fs')
 
 let viewPath=""
 
-app.use(express.static(`${viewPath}`))
+
 
 app.get("/:filePath",(req,res,next)=>{
     viewPath+=req.params.filePath
     const directory=`${viewPath}`
+    app.use(express.static(directory))
     fs.createReadStream(directory).pipe(res);
 })
 app.listen(port, () => {
