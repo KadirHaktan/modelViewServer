@@ -1,38 +1,20 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 
 const app = express();
-const cors = require('cors');
+const port = 3010;
 
 
-const stream=require('stream')
+const fs=require('fs')
 
-// Body-parser middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+const viewPath="C://home//site//wwwroot//wwwroot//view"
 
+app.use(express.static(`${viewPath}`))
 
-app.use(cors());
+app.get("/",(req,res,next)=>{
+    const directory=`${viewPath}/index.html`
+    fs.createReadStream(directory).pipe(res);
+})
 
-// veya sadece belirli bir kaynaktan gelen isteklere izin vermek için:
-app.use(cors({
-  origin: 'https://sync3dcatalog.netlify.app'
-}));
-
-// POST route
-app.post('/show-html', (req, res) => {
-    const htmlContent = req.body.htmlContent;
-    
-    if (!htmlContent) {
-        return res.status(400).send('HTML content is required.');
-    }
-
-    res.writeHead(200,{"Content-Type":"text/html"})
-    res.write(htmlContent)
-    res.end()
-});
-
-// Sunucuyu 3000 portunda başlat
-app.listen(3010, () => {
-    console.log('express start');
+app.listen(port, () => {
+  console.log(`Sunucu ${port} portunda çalışıyor.`);
 });
