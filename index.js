@@ -5,9 +5,9 @@ const port = 3010;
 
 
 
-const amqp=require('amqplib')
-
 const fs=require('fs')
+
+const path=require('path')
 
 const directoryName=__dirname
 console.log(directoryName)
