@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/KadirHaktan/modelViewServer#readme",
   "dependencies": {
+    "amqplib": "^0.10.3",
     "axios": "^1.6.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
